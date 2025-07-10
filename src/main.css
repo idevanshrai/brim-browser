@@ -1,0 +1,261 @@
+:root {
+  --arc-bg: #0c0c0c;
+  --arc-panel: #1a1a1a;
+  --arc-accent: #6a6af2;
+  --arc-text: #e6e6e6;
+  --arc-text-secondary: #aaaaaa;
+  --toolbar-height: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--arc-bg);
+  color: var(--arc-text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Layout Structure */
+.arc-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 72px;
+  background: var(--arc-panel);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  -webkit-app-region: drag;
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+.sidebar-top {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-app-region: no-drag;
+}
+
+.sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tab Strip */
+.tab-strip {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  -webkit-app-region: no-drag;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab.active {
+  background: var(--arc-accent);
+}
+
+.tab-favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.tab-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar */
+.toolbar {
+  height: var(--toolbar-height);
+  background: var(--arc-panel);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  -webkit-app-region: drag;
+}
+
+.toolbar > * {
+  -webkit-app-region: no-drag;
+}
+
+/* Window Controls */
+.window-controls {
+  display: flex;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  color: var(--arc-text-secondary);
+  font-size: 16px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.window-controls button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation Buttons */
+#back, #forward, #refresh, #downloads {
+  background: none;
+  border: none;
+  color: var(--arc-text);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#back:disabled, #forward:disabled {
+  color: var(--arc-text-secondary);
+  cursor: not-allowed;
+}
+
+#back:hover, #forward:hover, #refresh:hover, #downloads:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* URL Bar */
+.url-container {
+  flex: 1;
+  position: relative;
+  height: 28px;
+}
+
+#urlbar {
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--arc-text);
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+#urlbar:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--arc-accent);
+}
+
+.loading-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  background: var(--arc-accent);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Webview Container */
+.webview-container {
+  flex: 1;
+  position: relative;
+  background: var(--arc-bg);
+}
+
+webview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+webview.visible {
+  opacity: 1;
+}
+
+/* Empty State */
+.empty-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--arc-text-secondary);
+}
+
+.empty-state.hidden {
+  display: none;
+}

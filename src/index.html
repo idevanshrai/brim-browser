@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brim Browser</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <div class="arc-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-top">
+        <button class="sidebar-btn" id="new-tab">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="tab-strip" id="tab-strip">
+        <!-- Tabs will be added here dynamically -->
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="toolbar">
+        <div class="window-controls">
+          <button id="close" title="Close">×</button>
+          <button id="minimize" title="Minimize">−</button>
+          <button id="maximize" title="Maximize">□</button>
+        </div>
+        <button id="back" title="Back">←</button>
+        <button id="forward" title="Forward">→</button>
+        <div class="url-container">
+          <input type="text" id="urlbar" placeholder="Search or enter website address">
+          <div class="loading-indicator" id="loading-indicator"></div>
+        </div>
+        <button id="refresh" title="Refresh">↻</button>
+        <button id="downloads" title="Downloads">↓</button>
+      </div>
+      <div class="webview-container" id="webview-container">
+        <!-- Webviews will be added here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
